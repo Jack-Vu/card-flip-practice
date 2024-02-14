@@ -11,7 +11,7 @@ const generateCardData = (numberOfCards) => {
       imageIds.push(randomNumber);
     }
   }
-  imageIds = [...imageIds, imageIds];
+  imageIds = [...imageIds, ...imageIds];
   imageIds.sort(() => Math.random() - 0.5);
   imageIds.sort(() => Math.random() - 0.5);
   const cardData = imageIds.map((imageId, index) => {

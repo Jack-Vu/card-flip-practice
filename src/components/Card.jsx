@@ -2,7 +2,8 @@ import { Box } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import React from "react";
 
-function Card() {
+function Card({ data }) {
+  const { id, imageUrl, isFlipped, isMatched } = data;
   return (
     <Box
       width={100}
@@ -10,12 +11,7 @@ function Card() {
       bgcolor={"white"}
       sx={{ "&:hover": { bgcolor: orange[300] } }}
     >
-      <img
-        src={"/assets/1.webp"}
-        alt={"card-1"}
-        loading="lazy"
-        height={"100%"}
-      />
+      <img src={imageUrl} alt={`card-${id}`} loading="lazy" height={"100%"} />
     </Box>
   );
 }

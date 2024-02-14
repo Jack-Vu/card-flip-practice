@@ -1,33 +1,29 @@
-import React from "react";
-import { Card } from "./Card";
 import { Box } from "@mui/material";
+import { generateCardData } from "../utils";
+import { Card } from "./Card";
 
 function CardGrid() {
-  const numberOfCards = 16;
-  const generateCards = (numberOfCards) => {
-    const arr = new Array(numberOfCards);
-    arr.fill(0);
+  const numberOfCards = 36;
 
-    return arr.map((v, index) => <Card key={index}></Card>);
-  };
+  const cardData = generateCardData(numberOfCards);
   const columns = Math.sqrt(numberOfCards);
-  const cards = generateCards(numberOfCards);
   const gridContainerWidth = columns * 100 + (columns - 1) * 8;
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" mt={3}>
+    <Box display="flex" justifyContent="center" mt={5}>
       <Box
         id="card-container"
-        gap={1}
         sx={{
           display: "grid",
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
           gap: 1,
-          justifyContent: "center",
+          justifyItems: "center",
           width: gridContainerWidth,
         }}
       >
-        {cards}
+        {cardData.map((cardDataItem) => {
+          return <Card key={cardDataItem.id} data={cardDataItem} />;
+        })}
       </Box>
     </Box>
   );

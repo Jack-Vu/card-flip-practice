@@ -1,6 +1,12 @@
+import { CardGrid } from "./components/CardGrid";
+import { Navbar } from "./components/Navbar";
+
 function App() {
   return (
-    <>Hello! 123</>
+    <>
+      <Navbar></Navbar>
+      <CardGrid></CardGrid>
+    </>
   );
 }
 

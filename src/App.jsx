@@ -1,13 +1,20 @@
+import { useContext } from "react";
 import { CardGrid } from "./components/CardGrid";
 import { Navbar } from "./components/Navbar";
-import { CardDataContextProvider } from "./context/CardDataContext";
+import { CardDataContext } from "./context/CardDataContext";
+import { StartGame } from "./components/StartGame";
+import { Box } from "@mui/material";
 
 function App() {
+  const { gameStarted } = useContext(CardDataContext);
+
   return (
-    <CardDataContextProvider>
-      <Navbar></Navbar>
-      <CardGrid></CardGrid>
-    </CardDataContextProvider>
+    <>
+      <Navbar />
+      <Box id="main-container" display="flex" justifyContent="center" mt={5}>
+        {gameStarted ? <CardGrid /> : <StartGame />}
+      </Box>
+    </>
   );
 }
 

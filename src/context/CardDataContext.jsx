@@ -4,9 +4,20 @@ import { generateCardData } from "../utils";
 const CardDataContext = createContext();
 
 const CardDataContextProvider = ({ children }) => {
+  const [gameStarted, setGameStarted] = useState(false);
   const numberOfCards = 36;
-  const [cardData, setCardData] = useState(generateCardData(numberOfCards));
+  const [cardData, setCardData] = useState(null);
   const [flippedCard, setFlippedCard] = useState(null);
+
+  const handleStartGame = () => {
+    setGameStarted(true);
+    setCardData(generateCardData(numberOfCards));
+    setFlippedCard(null);
+  };
+
+  const handleNewGame = () => {
+    setGameStarted(false);
+  };
 
   const handleCardClick = (card) => {
     if (flippedCard && card.id === flippedCard.id) {
@@ -71,7 +82,14 @@ const CardDataContextProvider = ({ children }) => {
 
   return (
     <CardDataContext.Provider
-      value={{ numberOfCards, cardData, handleCardClick }}
+      value={{
+        gameStarted,
+        numberOfCards,
+        cardData,
+        handleStartGame,
+        handleNewGame,
+        handleCardClick,
+      }}
     >
       {children}
     </CardDataContext.Provider>

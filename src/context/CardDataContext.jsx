@@ -9,41 +9,62 @@ const CardDataContextProvider = ({ children }) => {
   const [flippedCard, setFlippedCard] = useState(null);
 
   const handleCardClick = (card) => {
-    if (flippedCard) {
-      if (flippedCard.imageUrl === card.imageUrl) {
-        const updatedCardData = cardData.map((cardItem) => {
-          if (cardItem.id === card.id || cardItem.id === flippedCard.id) {
-            return {
-              ...cardItem,
-              isMatched: true,
-            };
-          }
-          return cardItem;
-        });
-        setCardData(updatedCardData);
-      } else {
-        const updatedCardData = cardData.map((cardItem) => {
+    if (flippedCard && card.id === flippedCard.id) {
+      return;
+    }
+
+    const numberOfFlippedCards = cardData.filter(
+      (cardItem) => cardItem.isFlipped
+    ).length;
+
+    if (numberOfFlippedCards >= 2) {
+      return;
+    }
+
+    const updatedCardData = cardData.map((cardItem) => {
+      if (cardItem.id === card.id) {
+        return {
+          ...cardItem,
+          isFlipped: true,
+        };
+      }
+      return cardItem;
+    });
+    setCardData(updatedCardData);
+
+    if (!flippedCard) {
+      setFlippedCard(card);
+      return;
+    }
+
+    if (flippedCard.imageUrl === card.imageUrl) {
+      const updatedCardData = cardData.map((cardItem) => {
+        if (cardItem.id === card.id || cardItem.id === flippedCard.id) {
           return {
             ...cardItem,
             isFlipped: false,
-          };
-        });
-        setCardData(updatedCardData);
-      }
-      setFlippedCard(null);
-    } else {
-      const updatedCardData = cardData.map((cardItem) => {
-        if (cardItem.id === card.id) {
-          return {
-            ...cardItem,
-            isFlipped: true,
+            isMatched: true,
           };
         }
         return cardItem;
       });
-      setCardData(updatedCardData);
-      setFlippedCard(card);
+
+      setTimeout(() => {
+        setCardData(updatedCardData);
+      }, 1000);
+    } else {
+      const updatedCardData = cardData.map((cardItem) => {
+        return {
+          ...cardItem,
+          isFlipped: false,
+        };
+      });
+
+      setTimeout(() => {
+        setCardData(updatedCardData);
+      }, 1000);
     }
+    setFlippedCard(null);
   };
 
   console.log(cardData);

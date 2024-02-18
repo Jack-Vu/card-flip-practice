@@ -1,13 +1,13 @@
-import { Box } from "@mui/system";
 import { CardGrid } from "./components/CardGrid";
 import { Navbar } from "./components/Navbar";
+import { CardDataContextProvider } from "./context/CardDataContext";
 
 function App() {
   return (
-    <Box>
+    <CardDataContextProvider>
       <Navbar></Navbar>
       <CardGrid></CardGrid>
-    </Box>
+    </CardDataContextProvider>
   );
 }
 

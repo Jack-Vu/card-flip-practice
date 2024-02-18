@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
-import { generateCardData } from "../utils";
 import { Card } from "./Card";
+import { useContext } from "react";
+import { CardDataContext } from "../context/CardDataContext";
 
 function CardGrid() {
-  const numberOfCards = 36;
+  const { numberOfCards, cardData } = useContext(CardDataContext);
 
-  const cardData = generateCardData(numberOfCards);
   const columns = Math.sqrt(numberOfCards);
   const gridContainerWidth = columns * 100 + (columns - 1) * 8;
 

@@ -1,22 +1,26 @@
 import { createContext, useState } from "react";
 import { generateCardData } from "../utils";
+import { Levels, Speeds } from "../constants";
 
 const CardDataContext = createContext();
 
 const CardDataContextProvider = ({ children }) => {
   const [gameStarted, setGameStarted] = useState(false);
-  const numberOfCards = 36;
-  const [cardData, setCardData] = useState(null);
+  const [level, setLevel] = useState(Levels["4x4"]);
+  const [speed, setSpeed] = useState(Speeds.slow);
+
+  const [cardData, setCardData] = useState(generateCardData(Levels["4x4"]));
   const [flippedCard, setFlippedCard] = useState(null);
 
   const handleStartGame = () => {
     setGameStarted(true);
-    setCardData(generateCardData(numberOfCards));
-    setFlippedCard(null);
   };
 
   const handleNewGame = () => {
     setGameStarted(false);
+    const newCards = generateCardData(level);
+    setCardData(newCards);
+    setFlippedCard(null);
   };
 
   const handleCardClick = (card) => {
@@ -62,7 +66,7 @@ const CardDataContextProvider = ({ children }) => {
 
       setTimeout(() => {
         setCardData(updatedCardData);
-      }, 1000);
+      }, speed);
     } else {
       const updatedCardData = cardData.map((cardItem) => {
         return {
@@ -73,9 +77,15 @@ const CardDataContextProvider = ({ children }) => {
 
       setTimeout(() => {
         setCardData(updatedCardData);
-      }, 1000);
+      }, speed);
     }
     setFlippedCard(null);
+  };
+
+  const handleLevelChange = (newLevel) => {
+    setLevel(newLevel);
+    const newCards = generateCardData(newLevel);
+    setCardData(newCards);
   };
 
   console.log(cardData);
@@ -84,8 +94,12 @@ const CardDataContextProvider = ({ children }) => {
     <CardDataContext.Provider
       value={{
         gameStarted,
-        numberOfCards,
+        numberOfCards: level,
         cardData,
+        level,
+        speed,
+        handleLevelChange,
+        setSpeed,
         handleStartGame,
         handleNewGame,
         handleCardClick,

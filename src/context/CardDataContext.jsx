@@ -51,7 +51,7 @@ const CardDataContextProvider = ({ children }) => {
     const newCards = generateCardData(level);
     setCardData(newCards);
     setFlippedCard(null);
-  };
+  }; 
 
   const handleCardClick = (card) => {
     if (flippedCard && card.id === flippedCard.id) {

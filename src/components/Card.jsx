@@ -1,22 +1,37 @@
 import { Box } from "@mui/material";
 import { orange } from "@mui/material/colors";
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { CardDataContext } from "../context/CardDataContext";
 
 function Card({ data }) {
   const { id, imageUrl, isFlipped, isMatched } = data;
-  const [flippedCard, setFlippedCard] = useState(null);
+  const { handleCardClick } = useContext(CardDataContext);
+
   return (
-    <Box
-      width={100}
-      height={100}
-      bgcolor={"white"}
-      sx={{ "&:hover": { bgcolor: orange[300] } }}
-      onClick={() => setFlippedCard(true)}
-    >
-      {flippedCard ? (
-        <img src={imageUrl} alt={`card-${id}`} loading="lazy" height={"100%"} />
-      ) : null}
-    </Box>
+    <>
+      {isMatched ? (
+        <Box height={100} width={100}></Box>
+      ) : (
+        <Box
+          width={100}
+          height={100}
+          sx={{
+            bgcolor: isFlipped ? "none" : "white",
+            "&:hover": { bgcolor: isFlipped ? "none" : orange[200] },
+          }}
+          onClick={() => handleCardClick(data)}
+        >
+          {isFlipped && (
+            <img
+              src={imageUrl}
+              alt={`card-${id}`}
+              loading="lazy"
+              height={"100%"}
+            />
+          )}
+        </Box>
+      )}
+    </>
   );
 }
 

@@ -1,14 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { CardDataContext } from "../context/CardDataContext";
 import { differenceInHours, differenceInMinutes } from "date-fns";
 import { Box, Typography } from "@mui/material";
-import { Timer as TimerIcon } from "@mui/icons-material";
-
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 function Timer() {
-  const [diffSeconds, setDiffSeconds] = useState(0);
-  const [diffMinutes, setDiffMinutes] = useState(0);
-  const [diffHours, setDiffHours] = useState(0);
-  const { startedTimeStamp } = useContext(CardDataContext);
+  const {
+    startedTimeStamp,
+    diffSeconds,
+    setDiffSeconds,
+    diffMinutes,
+    setDiffMinutes,
+    diffHours,
+    setDiffHours,
+  } = useContext(CardDataContext);
 
   useEffect(() => {
     if (startedTimeStamp) {
@@ -59,7 +63,7 @@ function Timer() {
   return (
     startedTimeStamp && (
       <Box display="flex" alignItems="center" gap={1}>
-        <TimerIcon />
+        <AccessAlarmIcon />
         <Typography>{getTimerDisplayValue()}</Typography>
       </Box>
     )

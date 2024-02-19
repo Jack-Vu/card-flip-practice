@@ -11,7 +11,7 @@ import { CardDataContext } from "../context/CardDataContext";
 import { orange } from "@mui/material/colors";
 import { Levels, Speeds } from "../constants";
 
-const StartGame = () => {
+const StartGameSetup = () => {
   const { level, speed, handleLevelChange, setSpeed, handleStartGame } =
     useContext(CardDataContext);
 
@@ -120,7 +120,7 @@ const StartGame = () => {
   );
 };
 
-export { StartGame };
+export { StartGameSetup };
 
 const radioStyle = {
   color: orange[300],

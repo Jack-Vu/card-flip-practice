@@ -36,3 +36,8 @@ function Card({ data }) {
 }
 
 export { Card };
+
+const hint = {
+  animationName: "wiggle",
+  animationDuration: "0.3",
+};

@@ -11,8 +11,10 @@ const CardDataContextProvider = ({ children }) => {
 
   const [cardData, setCardData] = useState(generateCardData(Levels["4x4"]));
   const [flippedCard, setFlippedCard] = useState(null);
+  const [startedTimeStamp, setStartedTimeStamp] = useState(null);
 
   const handleStartGame = () => {
+    setStartedTimeStamp(new Date());
     setGameStarted(true);
   };
 
@@ -88,8 +90,6 @@ const CardDataContextProvider = ({ children }) => {
     setCardData(newCards);
   };
 
-  console.log(cardData);
-
   return (
     <CardDataContext.Provider
       value={{
@@ -98,6 +98,7 @@ const CardDataContextProvider = ({ children }) => {
         cardData,
         level,
         speed,
+        startedTimeStamp,
         handleLevelChange,
         setSpeed,
         handleStartGame,

@@ -9,10 +9,10 @@ function GameCompletion() {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-      <Typography color="white">You did it</Typography>;
+      <Typography color="white">You did it</Typography>
       <Box>
-        <Typography color="white">Time Spent: {}</Typography>;
-        <Typography color="white">Moves: {}</Typography>;
+        <Typography color="white">Time Spent: {}</Typography>
+        <Typography color="white">Moves: {}</Typography>
       </Box>
       <Button
         variant="contained"

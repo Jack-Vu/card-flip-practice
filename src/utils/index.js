@@ -18,7 +18,7 @@ const generateCardData = (numberOfCards) => {
   const cardData = imageIds.map((imageId, index) => {
     return {
       id: index + 1,
-      imageUrl: `/assets/${imageId}.webp`,
+      imageUrl: `/assets/images/${imageId}.webp`,
       isFlipped: false,
       isMatched: false,
     };

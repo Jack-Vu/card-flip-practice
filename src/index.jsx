@@ -10,14 +10,17 @@ import "@fontsource/roboto/700.css";
 import { CardDataContextProvider } from "./context/CardDataContext";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
+import { SoundContextProvider } from "./context/SoundContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CardDataContextProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </CardDataContextProvider>
+    <SoundContextProvider>
+      <CardDataContextProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </CardDataContextProvider>
+    </SoundContextProvider>
   </React.StrictMode>
 );

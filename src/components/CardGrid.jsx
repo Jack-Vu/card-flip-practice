@@ -1,18 +1,17 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { Card } from "./Card";
 import { useContext } from "react";
 import { CardDataContext } from "../context/CardDataContext";
-import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+import { Hint } from "./Hint";
 
 function CardGrid() {
   const { numberOfCards, cardData } = useContext(CardDataContext);
-
   const columns = Math.sqrt(numberOfCards);
   const gridContainerWidth = columns * 100 + (columns - 1) * 8;
 
   return (
-    <>
-      <Button variant="contained" startIcon={<TipsAndUpdatesIcon />}></Button>
+    <Box display="flex" flexDirection="column" gap={2}>
+      <Hint />
       <Box
         id="card-container"
         sx={{
@@ -27,7 +26,7 @@ function CardGrid() {
           return <Card key={cardDataItem.id} data={cardDataItem} />;
         })}
       </Box>
-    </>
+    </Box>
   );
 }
 

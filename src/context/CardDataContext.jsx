@@ -1,10 +1,14 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { generateCardData, generateRandomNumber } from "../utils";
 import { Levels, Speeds } from "../constants";
+import { SoundContext } from "./SoundContext";
 
 const CardDataContext = createContext();
 
 const CardDataContextProvider = ({ children }) => {
+  const { playSuccessSound, playFailedSound, playBackgroundMusic } =
+    useContext(SoundContext);
+
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
 
@@ -15,6 +19,7 @@ const CardDataContextProvider = ({ children }) => {
     generateCardData(level.numberOfCards)
   );
   const [flippedCard, setFlippedCard] = useState(null);
+  const [cardDataUpdating, setCardDataUpdating] = useState(false);
 
   const [startedTimeStamp, setStartedTimeStamp] = useState(null);
   const [diffSeconds, setDiffSeconds] = useState(0);
@@ -35,6 +40,7 @@ const CardDataContextProvider = ({ children }) => {
   }, [cardData]);
 
   const handleStartGame = () => {
+    playBackgroundMusic();
     setStartedTimeStamp(new Date());
     setGameStarted(true);
     setGameCompleted(false);
@@ -81,12 +87,15 @@ const CardDataContextProvider = ({ children }) => {
       }
       return cardItem;
     });
+
     setCardData(updatedCardData);
 
     if (!flippedCard) {
       setFlippedCard(card);
       return;
     }
+
+    setCardDataUpdating(true);
 
     if (flippedCard.imageUrl === card.imageUrl) {
       const updatedCardData = cardData.map((cardItem) => {
@@ -101,7 +110,9 @@ const CardDataContextProvider = ({ children }) => {
       });
 
       setTimeout(() => {
+        playSuccessSound();
         setCardData(updatedCardData);
+        setCardDataUpdating(false);
       }, speed);
     } else {
       const updatedCardData = cardData.map((cardItem) => {
@@ -112,7 +123,9 @@ const CardDataContextProvider = ({ children }) => {
       });
 
       setTimeout(() => {
+        playFailedSound();
         setCardData(updatedCardData);
+        setCardDataUpdating(false);
       }, speed);
     }
     setFlippedCard(null);
@@ -156,6 +169,7 @@ const CardDataContextProvider = ({ children }) => {
         speed,
         moves: Math.floor(counter / 2),
         maxNumberOfHints: level.hints,
+        cardDataUpdating,
 
         startedTimeStamp,
         diffSeconds,

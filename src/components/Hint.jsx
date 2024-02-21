@@ -3,16 +3,18 @@ import { CardDataContext } from "../context/CardDataContext";
 import { Alert, Button, Snackbar } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import { grey, orange } from "@mui/material/colors";
+import { SoundContext } from "../context/SoundContext";
 
 function Hint() {
-  const { handleHintClick, maxNumberOfHints } = useContext(CardDataContext);
+  const { playHintSound } = useContext(SoundContext);
 
-  const [hintSoundEffect] = useState(new Audio("/assets/music/hint.mp3"));
+  const { handleHintClick, maxNumberOfHints, cardDataUpdating } =
+    useContext(CardDataContext);
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [hints, setHints] = useState(maxNumberOfHints);
   const onHintClick = () => {
-    hintSoundEffect.load();
-    hintSoundEffect.play();
+    playHintSound();
     setOpenSnackbar(true);
     setHints((prev) => prev - 1);
     handleHintClick();
@@ -24,7 +26,7 @@ function Hint() {
         startIcon={<TipsAndUpdatesIcon />}
         color="primary"
         onClick={onHintClick}
-        disabled={hints === 0}
+        disabled={hints === 0 || cardDataUpdating}
         sx={{
           "&.Mui-disabled": {
             color: grey[600],

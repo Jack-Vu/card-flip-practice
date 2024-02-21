@@ -5,6 +5,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  Typography,
 } from "@mui/material";
 import React, { useContext } from "react";
 import { CardDataContext } from "../context/CardDataContext";
@@ -12,8 +13,15 @@ import { orange } from "@mui/material/colors";
 import { Levels, Speeds } from "../constants";
 
 const StartGameSetup = () => {
-  const { level, speed, handleLevelChange, setSpeed, handleStartGame } =
-    useContext(CardDataContext);
+  const {
+    level,
+    speed,
+    handleLevelChange,
+    setSpeed,
+    handleStartGame,
+    userName,
+    updateUserName,
+  } = useContext(CardDataContext);
 
   return (
     <Box
@@ -21,6 +29,18 @@ const StartGameSetup = () => {
       sx={{ display: "flex", flexDirection: "column", gap: 2 }}
     >
       <Box id="level-container">
+        {userName && (
+          <Box mb={2}>
+            <Typography
+              variant="h6"
+              color="white"
+            >{`Hope you're ready, ${userName}!`}</Typography>
+            <Box display="flex" color="white" gap={1} alignItems="center">
+              <Typography variant="subtitle1">Not you? </Typography>
+              <Button onClick={() => updateUserName("")}>Switch User</Button>
+            </Box>
+          </Box>
+        )}
         <FormLabel
           id="levels-row-radio-buttons-group-label"
           sx={{ color: "white" }}
@@ -103,10 +123,7 @@ const StartGameSetup = () => {
           />
         </RadioGroup>
       </Box>
-      <Button
-        variant="contained"
-        onClick={handleStartGame}
-      >
+      <Button variant="contained" onClick={handleStartGame}>
         Start Game
       </Button>
     </Box>

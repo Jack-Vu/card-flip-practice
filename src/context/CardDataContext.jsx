@@ -9,6 +9,8 @@ const CardDataContextProvider = ({ children }) => {
   const { playSuccessSound, playFailedSound, playBackgroundMusic } =
     useContext(SoundContext);
 
+  const [userName, setUserName] = useState("");
+
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
 
@@ -170,6 +172,7 @@ const CardDataContextProvider = ({ children }) => {
         moves: Math.floor(counter / 2),
         maxNumberOfHints: level.hints,
         cardDataUpdating,
+        userName,
 
         startedTimeStamp,
         diffSeconds,
@@ -180,6 +183,7 @@ const CardDataContextProvider = ({ children }) => {
         setDiffHours,
         penaltyTime,
 
+        updateUserName: setUserName,
         handleLevelChange,
         setSpeed,
         handleStartGame,

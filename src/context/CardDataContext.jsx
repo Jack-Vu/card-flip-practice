@@ -42,7 +42,7 @@ const CardDataContextProvider = ({ children }) => {
   }, [cardData]);
 
   const handleStartGame = () => {
-    playBackgroundMusic();
+    // playBackgroundMusic();
     setStartedTimeStamp(new Date());
     setGameStarted(true);
     setGameCompleted(false);

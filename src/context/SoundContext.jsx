@@ -15,6 +15,7 @@ const SoundContextProvider = ({ children }) => {
   }, [backgroundMusic]);
 
   const playBackgroundMusic = () => {
+    backgroundMusic.load();
     backgroundMusic.play();
   };
 

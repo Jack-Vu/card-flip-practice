@@ -13,23 +13,22 @@ function Card({ data }) {
         <Box height={100} width={100}></Box>
       ) : (
         <Box
-          width={100}
-          height={100}
+          className={`card ${isFlipped ? "is-flipped" : ""}`}
           sx={{
-            bgcolor: isFlipped ? "none" : "white",
             "&:hover": { bgcolor: isFlipped ? "none" : orange[200] },
             ...(hint ? hintAnimation : {}),
           }}
-          onClick={() => handleCardClick(data)}
         >
-          {isFlipped && (
-            <img
-              src={imageUrl}
-              alt={`card-${id}`}
-              loading="lazy"
-              height={"100%"}
-            />
-          )}
+          <Box width={100} height={100} onClick={() => handleCardClick(data)}>
+            {isFlipped && (
+              <img
+                src={imageUrl}
+                alt={`card-${id}`}
+                loading="lazy"
+                height={"100%"}
+              />
+            )}
+          </Box>
         </Box>
       )}
     </>

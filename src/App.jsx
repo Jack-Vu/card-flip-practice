@@ -6,6 +6,7 @@ import { StartGameSetup } from "./components/StartGameSetup.jsx";
 import { Box } from "@mui/material";
 import { GameCompletion } from "./components/GameCompletion.jsx";
 import { WelcomeModal } from "./components/WelcomeModal.jsx";
+import { LeaderBoard } from "./components/LeaderBoard.jsx";
 
 function App() {
   const { gameStarted, gameCompleted } = useContext(CardDataContext);
@@ -15,9 +16,10 @@ function App() {
       <WelcomeModal />
       <Navbar />
       <Box id="main-container" display="flex" justifyContent="center" my={5}>
-        {gameStarted && <CardGrid />}
+        {/* {gameStarted && <CardGrid />}
         {gameCompleted && <GameCompletion />}
-        {!gameStarted && !gameCompleted && <StartGameSetup />}
+        {!gameStarted && !gameCompleted && <StartGameSetup />} */}
+        <LeaderBoard />
       </Box>
     </>
   );

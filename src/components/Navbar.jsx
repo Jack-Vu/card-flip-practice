@@ -1,7 +1,7 @@
 import { AppBar, IconButton, Toolbar, Button, Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useContext } from "react";
-import { orange } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import { CardDataContext } from "../context/CardDataContext";
 import { Timer } from "./Timer";
 import { MoveCounter } from "./MoveCounter";
@@ -11,7 +11,7 @@ function Navbar() {
     useContext(CardDataContext);
 
   return (
-    <AppBar position="static" sx={{ bgcolor: orange[300] }}>
+    <AppBar position="static" sx={{ bgcolor: blue[400] }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box id="navbar-left-side">
           <IconButton

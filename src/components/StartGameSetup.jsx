@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { CardDataContext } from "../context/CardDataContext";
-import { orange } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import { Levels, Speeds } from "../constants";
 
 const StartGameSetup = () => {
@@ -33,17 +33,22 @@ const StartGameSetup = () => {
           <Box mb={2}>
             <Typography
               variant="h6"
-              color="white"
+              color="black"
             >{`Hope you're ready, ${userName}!`}</Typography>
-            <Box display="flex" color="white" gap={1} alignItems="center">
+            <Box display="flex" color="black" gap={1} alignItems="center">
               <Typography variant="subtitle1">Not you? </Typography>
-              <Button onClick={() => updateUserName("")}>Switch User</Button>
+              <Button
+                sx={{ color: "#008DDA" }}
+                onClick={() => updateUserName("")}
+              >
+                Switch User
+              </Button>
             </Box>
           </Box>
         )}
         <FormLabel
           id="levels-row-radio-buttons-group-label"
-          sx={{ color: "white" }}
+          sx={{ color: "black" }}
         >
           Game Grid Level
         </FormLabel>
@@ -51,7 +56,7 @@ const StartGameSetup = () => {
           row
           aria-labelledby="levels-row-radio-buttons-group-label"
           name="levels-buttons-group"
-          sx={{ color: "white" }}
+          sx={{ color: "black" }}
           value={level}
         >
           <FormControlLabel
@@ -89,7 +94,7 @@ const StartGameSetup = () => {
       <Box id="speed-container">
         <FormLabel
           id="speed-row-radio-buttons-group-label"
-          sx={{ color: "white" }}
+          sx={{ color: "black" }}
         >
           Game Grid Level
         </FormLabel>
@@ -97,7 +102,7 @@ const StartGameSetup = () => {
           row
           aria-labelledby="speed-row-radio-buttons-group-label"
           name="speed-buttons-group"
-          sx={{ color: "white" }}
+          sx={{ color: "black" }}
           value={speed}
         >
           <FormControlLabel
@@ -133,8 +138,8 @@ const StartGameSetup = () => {
 export { StartGameSetup };
 
 const radioStyle = {
-  color: orange[300],
+  color: blue,
   "&.Mui-checked": {
-    color: orange[300],
+    color: blue[300],
   },
 };

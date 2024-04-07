@@ -6,8 +6,12 @@ import { SoundContext } from "./SoundContext";
 const CardDataContext = createContext();
 
 const CardDataContextProvider = ({ children }) => {
-  const { playSuccessSound, playFailedSound, playBackgroundMusic } =
-    useContext(SoundContext);
+  const {
+    playSuccessSound,
+    playFailedSound,
+    playBackgroundMusic,
+    stopBackgroundMusic,
+  } = useContext(SoundContext);
 
   const [userName, setUserName] = useState("");
 
@@ -36,13 +40,14 @@ const CardDataContextProvider = ({ children }) => {
       (cardItem) => !cardItem.isMatched
     ).length;
     if (numberOfUnmatchedCards === 0) {
+      stopBackgroundMusic();
       setGameCompleted(true);
       setGameStarted(false);
     }
-  }, [cardData]);
+  }, [cardData, stopBackgroundMusic]);
 
   const handleStartGame = () => {
-    // playBackgroundMusic();
+    playBackgroundMusic();
     setStartedTimeStamp(new Date());
     setGameStarted(true);
     setGameCompleted(false);
@@ -57,6 +62,7 @@ const CardDataContextProvider = ({ children }) => {
   };
 
   const handleNewGame = () => {
+    stopBackgroundMusic();
     setGameStarted(false);
     setGameCompleted(false);
 

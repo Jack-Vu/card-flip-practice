@@ -15,8 +15,14 @@ const SoundContextProvider = ({ children }) => {
   }, [backgroundMusic]);
 
   const playBackgroundMusic = () => {
+    backgroundMusic.volume = 0.2;
     backgroundMusic.load();
     backgroundMusic.play();
+  };
+
+  const stopBackgroundMusic = () => {
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
   };
 
   const playSuccessSound = () => {
@@ -36,6 +42,7 @@ const SoundContextProvider = ({ children }) => {
     <SoundContext.Provider
       value={{
         playBackgroundMusic,
+        stopBackgroundMusic,
         playSuccessSound,
         playFailedSound,
         playHintSound,

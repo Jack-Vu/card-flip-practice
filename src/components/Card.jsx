@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { orange } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { CardDataContext } from "../context/CardDataContext";
 
@@ -15,8 +15,9 @@ function Card({ data }) {
         <Box
           className={`card ${isFlipped ? "is-flipped" : ""}`}
           sx={{
-            "&:hover": { bgcolor: isFlipped ? "none" : orange[200] },
+            "&:hover": { bgcolor: isFlipped ? "none" : blue[100] },
             ...(hint ? hintAnimation : {}),
+            borderRadius: "10px",
           }}
         >
           <Box width={100} height={100} onClick={() => handleCardClick(data)}>

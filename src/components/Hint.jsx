@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { CardDataContext } from "../context/CardDataContext";
 import { Alert, Button, Snackbar } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-import { grey, orange } from "@mui/material/colors";
+import { grey, blue } from "@mui/material/colors";
 import { SoundContext } from "../context/SoundContext";
 
 function Hint() {
@@ -27,11 +27,12 @@ function Hint() {
         color="primary"
         onClick={onHintClick}
         disabled={hints === 0 || cardDataUpdating}
+        fullWidth
         sx={{
           "&.Mui-disabled": {
             color: grey[600],
-            backgroundColor: orange[200],
-            border: `1px solid ${orange[200]}`,
+            backgroundColor: blue[200],
+            border: `1px solid ${blue[200]}`,
           },
         }}
       >

@@ -10,7 +10,13 @@ function CardGrid() {
   const gridContainerWidth = columns * 100 + (columns - 1) * 8;
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={2}
+      justifyContent="center"
+      alignItems="center"
+    >
       <Hint />
       <Box
         id="card-container"

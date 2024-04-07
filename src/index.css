@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #EAD8C0;
 }
 
 @keyframes wiggle {
@@ -39,4 +39,6 @@ body {
   transform: translateX(-100%) rotateY(180deg);
 }
 
-
+img {
+  transform: scaleX(-1);
+}

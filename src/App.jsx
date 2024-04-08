@@ -13,7 +13,6 @@ function App() {
 
   return (
     <>
-      <WelcomeModal />
       <Navbar />
       <Box id="main-container" display="flex" justifyContent="center" my={5}>
         {/* {gameStarted && <CardGrid />}
@@ -21,6 +20,7 @@ function App() {
         {!gameStarted && !gameCompleted && <StartGameSetup />} */}
         <LeaderBoard />
       </Box>
+      {/* <WelcomeModal /> */}
     </>
   );
 }

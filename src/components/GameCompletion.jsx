@@ -38,6 +38,7 @@ function GameCompletion() {
         <Typography color="white">Time Spent: {time}</Typography>
         <Typography color="white">Moves: {moves}</Typography>
       </Box>
+      <Box
       <Button
         variant="contained"
         endIcon={<RestartAltIcon />}

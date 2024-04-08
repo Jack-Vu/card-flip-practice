@@ -19,6 +19,7 @@ function App() {
         {gameCompleted && <GameCompletion />}
         {!gameStarted && !gameCompleted && <StartGameSetup />} */}
         <LeaderBoard />
+        <Typography></Typography>
       </Box>
       {/* <WelcomeModal /> */}
     </>

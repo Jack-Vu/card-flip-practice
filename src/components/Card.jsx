@@ -30,6 +30,7 @@ function Card({ data }) {
               />
             )}
           </Box>
+          somechanges
         </Box>
       )}
     </>

@@ -14,7 +14,7 @@ function Navbar() {
     <AppBar position="static" sx={{ bgcolor: blue[400] }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box id="navbar-left-side">
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -22,7 +22,7 @@ function Navbar() {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Button color="inherit" sx={{ mx: 1 }} onClick={handleNewGame}>
             New Game
           </Button>
